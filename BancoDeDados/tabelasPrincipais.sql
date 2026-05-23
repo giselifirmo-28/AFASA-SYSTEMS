@@ -135,3 +135,39 @@ CONSTRAINT fk_post_planta_planta
     REFERENCES planta(id_planta) 
     ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS post_curador (
+    id_post INT NOT NULL,
+    id_curador INT NOT NULL,
+
+    CONSTRAINT pk_post_curador
+        PRIMARY KEY (id_post, id_curador),
+
+    CONSTRAINT fk_post_curador_post
+        FOREIGN KEY (id_post)
+        REFERENCES post(id_post)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_post_curador_curador
+        FOREIGN KEY (id_curador)
+        REFERENCES curador(id_perfil)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS post_profissional (
+    id_post INT NOT NULL,
+    id_profissional INT NOT NULL,
+
+    CONSTRAINT pk_post_profissional
+        PRIMARY KEY (id_post, id_profissional),
+
+    CONSTRAINT fk_post_profissional_post
+        FOREIGN KEY (id_post)
+        REFERENCES post(id_post)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_post_profissional_profissional
+        FOREIGN KEY (id_profissional)
+        REFERENCES profissional(id_perfil)
+        ON DELETE CASCADE
+);
